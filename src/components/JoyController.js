@@ -13,9 +13,12 @@ class JoyController extends HTMLElement {
       --joy-width: 100px;
       --outter-radius: 50px;
       position: relative;
+      --buttons-container-width: 70%;
+      --symbol-width: 17px;
+      --symbol-height: 6px;
     }
 
-    .container {
+    .container { 
       height: 100%;
       background: #219ebc;
     }

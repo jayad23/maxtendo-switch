@@ -14,6 +14,7 @@ class Console extends HTMLElement {
         --height: 275px;
         --controller-width: 100px;
         --edge-radius: 4px;
+        --basic: #333436;
       }
 
       .container {
