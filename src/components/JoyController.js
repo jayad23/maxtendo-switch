@@ -1,3 +1,6 @@
+import "./sub-components/trigger";
+import "./sub-components/left";
+import "./sub-components/right";
 class JoyController extends HTMLElement {
   constructor() {
     super();
@@ -43,58 +46,27 @@ class JoyController extends HTMLElement {
         0 5px 2px #fff4 inset;
       ;
     }
-
-    .trigger{
-      background: #333;
-      width: 90%;
-      height: 20%;
-      position: absolute;
-      z-index: -1;
-      cursor: pointer;
-    }
-
-    :host(.right) .trigger{
-      border-radius: 
-        2px
-        var(--outter-radius) 
-        2px 
-        0
-      ;
-      right: -2px;
-      top: -3.5px;
-      transition: transform .7s;
-    }
-
-    :host(.left) .trigger{
-      border-radius: 
-        var(--outter-radius) 
-        2px 
-        0
-        2px
-      ;
-      left: -3px;
-      top: -3.5px;
-    }
-
-    :host(.right) .trigger:active{
-      top: -1px;
-    }
-
-    :host(.left) .trigger:active{
-      top: -1px;
-    }
   `;
   }
 
   connectedCallback() {
     this.render();
+    this.addContent();
+  }
+
+  addContent() {
+    const container = this.shadowRoot.querySelector(".container");
+    const isLeft = this.classList.contains("left");
+    const classis = isLeft ? "left" : "right";
+    const trigger = `<controller-trigger class=${classis}></controller-trigger>`;
+    const buttonComponent = `<${classis}-controller-buttons></${classis}-controller-buttons>`;
+    container.insertAdjacentHTML("afterbegin", trigger);
+    container.insertAdjacentHTML("afterbegin", buttonComponent);
   }
 
   render() {
     this.shadowRoot.innerHTML = `
     <style>${JoyController.styles}</style>
-    </div>
-    <div class="trigger">
     </div>
     <div class="container">
     </div>
