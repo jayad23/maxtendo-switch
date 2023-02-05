@@ -1,4 +1,5 @@
 import "./JoyController";
+import "./sub-components/trigger";
 import "./Screen";
 class Console extends HTMLElement {
   constructor() {
@@ -11,24 +12,24 @@ class Console extends HTMLElement {
       :host{
         --width: 625px;
         --height: 275px;
-        --outter-radius: 50px;
+        --controller-width: 100px;
+        --edge-radius: 4px;
       }
 
       .container {
         width: var(--width);
         height: var(--height);
-        background: #333;
         margin: 0 auto;
-        display: flex;
-        justify-content: space-between;
-        border-radius: var(--outter-radius);
+        display: grid;
+        grid-template-columns: 
+          var(--controller-width) 
+          1fr 
+          var(--controller-width)
+        ;
+        filter: drop-shadow(6px 6px 8px #0006);
+
       }
 
-      .joy-container{
-        width: 100%;
-        display: flex;
-        justify-content: space-between;
-      }
     `;
   }
 
@@ -40,9 +41,11 @@ class Console extends HTMLElement {
     this.shadowRoot.innerHTML = `
       <style>${Console.styles}</style>
       <div class="container">
-      <joy-controller class="left"></joy-controller>
+      <joy-controller class="left">
+      </joy-controller>
       <switch-screen></switch-screen>
-      <joy-controller class="right"></joy-controller>
+      <joy-controller class="right">
+      <controller-trigger></controller-trigger></joy-controller>
       </div>
     `;
   }

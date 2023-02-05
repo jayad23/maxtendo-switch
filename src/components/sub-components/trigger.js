@@ -1,4 +1,4 @@
-class JoyController extends HTMLElement {
+class Trigger extends HTMLElement {
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -7,41 +7,6 @@ class JoyController extends HTMLElement {
   static get styles() {
     return `
     :host{
-      --joy-width: 100px;
-      --outter-radius: 50px;
-      position: relative;
-    }
-
-    .container {
-      height: 100%;
-      background: #219ebc;
-    }
-
-    :host(.left) .container {
-      border-radius: 
-        var(--outter-radius) 
-        0 
-        var(--edge-radius) 
-        var(--outter-radius)
-      ;
-      box-shadow: 
-        4px -6px 6px #0005 inset,
-        0 5px 2px #fff4 inset;
-      ;
-    }
-
-    :host(.right) .container {
-      background:  #e63946;
-      border-radius: 
-        0 
-        var(--outter-radius) 
-        var(--outter-radius) 
-        var(--edge-radius)
-      ;
-      box-shadow: 
-        -4px -6px 6px #0005 inset,
-        0 5px 2px #fff4 inset;
-      ;
     }
 
     .trigger{
@@ -92,14 +57,11 @@ class JoyController extends HTMLElement {
 
   render() {
     this.shadowRoot.innerHTML = `
-    <style>${JoyController.styles}</style>
-    </div>
+    <style>${Trigger.styles}</style>
     <div class="trigger">
-    </div>
-    <div class="container">
     </div>
   `;
   }
 }
 
-customElements.define("joy-controller", JoyController);
+customElements.define("controller-trigger", Trigger);
